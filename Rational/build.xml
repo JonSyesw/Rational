@@ -1,0 +1,22 @@
+<project>
+    <target name="clean">
+        <delete dir="build"/>
+    </target>
+    <target name="compile" depends="clean">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes">
+            <classpath location="lib/junit-4.13.jar" />
+        </javac>
+    </target>
+    <target name="jar" depends="compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="build/jar/Rational.jar" basedir="build/classes">
+            <manifest>
+                <attribute name="Main-Class" value="Rational"/>
+            </manifest>
+        </jar>
+    </target>
+    <target name="run" depends="jar">
+        <java jar="build/jar/Rational.jar" fork="true"/>
+    </target>
+</project>
